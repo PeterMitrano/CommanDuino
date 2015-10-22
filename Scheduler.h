@@ -1,9 +1,8 @@
 #pragma once
 /** \brief is the master of all commands.
  * It knows executes the inialize, execute, and end functions
- * of each commands.
- * Scheduler is also a singleton, so the constructor is private
- * and there's only one instance.
+ * Right now, it only supports parallel commands
+ * Sequential commands could be added by copying the logic from CommandGroups
  */
 
 #include "LinkedList.h"
@@ -11,11 +10,10 @@
 
 class Scheduler {
   public:
-
-    /** \brief returns pointer to the singleton of scheduler
-     * \return pointer to singleton
-     */
-    static Scheduler *getInstance();
+    /** \brief pass the master command to the constructor
+     * \param[_in] the master command to control everything
+     * */
+    Scheduler(Command *command);
 
     /** \brief adds a command to the command group
      * \param[_in] command the pointer
@@ -29,9 +27,6 @@ class Scheduler {
     void run();
 
   private:
-
-    /** \brief singleton accessor */
-    Scheduler();
 
     /** \brief singleton instance */
     static Scheduler *instance;

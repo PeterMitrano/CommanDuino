@@ -13,7 +13,7 @@ void DriveForward::initialize(){
 }
 
 void DriveForward::execute(){
-
+  Robot::get()->driveForward();
 }
 
 bool DriveForward::isFinished(){
@@ -21,5 +21,5 @@ bool DriveForward::isFinished(){
 }
 
 void DriveForward::end(){
-  //cleanup stuff might go here
+  Robot.stopDriving();
 }

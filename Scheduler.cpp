@@ -1,14 +1,7 @@
 #include "Scheduler.h"
 
-Scheduler *Scheduler::instance = NULL;
-
-Scheduler::Scheduler() {}
-
-Scheduler *Scheduler::getInstance() {
-  if (instance == NULL){
-    instance = new Scheduler();
-  }
-  return instance;
+Scheduler::Scheduler(Command *masterCommand) {
+  addCommand(masterCommand);
 }
 
 void Scheduler::addCommand(Command *command) {

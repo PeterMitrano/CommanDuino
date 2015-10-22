@@ -1,11 +1,10 @@
 #include "Command.h"
 
-#include "Robot.h"
 #include "Scheduler.h"
 
 Command::Command() : initialized(false) {}
 
-Command::Command(String name) : initialized(false), name(name), startTime(Robot::getTime()) {}
+Command::Command(String name) : initialized(false), name(name), startTime(millis()) {}
 
 bool Command::cycle() {
   bool finished = false;
@@ -34,7 +33,7 @@ void Command::setTimeout(unsigned long timeout) {
 }
 
 unsigned long Command::getTime() {
-  return Robot::getTime() - startTime;
+  return millis() - startTime;
 }
 
 bool Command::isTimedOut() {
@@ -48,7 +47,7 @@ bool Command::isRunning() {
 void Command::initialize() {}
 void Command::_initialize() {
   running = true;
-  startTime = Robot::getTime();
+  startTime = millis();
 }
 
 void Command::execute() {}
@@ -59,10 +58,6 @@ bool Command::isFinished() {}
 void Command::end() {}
 void Command::_end() {
   running = false;
-}
-
-void Command::start() {
-  Scheduler::getInstance()->addCommand(this);
 }
 
 bool Command::operator!=(const Command& other){

@@ -41,9 +41,6 @@ class Command {
     virtual void end();
     virtual void _end();
 
-    /** \brief adds this command to the scheduler */
-    void start();
-
     /** \brief actually does the  excuting.
      * @return if command is finished
      */
